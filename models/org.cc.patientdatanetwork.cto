@@ -13,31 +13,109 @@
  */
 
 /**
- * Write your model definitions here
+ * Model definitions for FHIR (initially not implementing FHIR...but it will come)
  */
 
 namespace org.cc.patientdatanetwork
 
-participant SampleParticipant identified by participantId {
+abstract concept Address {
+  o String street
+  o String city
+  o String country
+}
+
+enum CanadaProvince {
+  o ONTARIO
+  o QUEBEC
+  o BRITISH_COLUBIA
+  o ALBERTA
+  o MANITOBA
+  o SASKATCHEWAN
+  o NOVA_SCOTIA
+  o NEW_BRUNSWICK
+  o NEWFOUNDLAND_AND_LABRADOR
+  o PRINCE_EDWARD_ISLAND
+  o NORTHWEST_TERRITORIES
+  o NUNAVAT
+  o YUKON
+}
+
+concept CanadaAddress extends Address {
+  o CanadaProvince province
+  o String zipcode
+}
+abstract participant Person identified by participantId {
   o String participantId
   o String firstName
   o String lastName
-  o String address
+  o String gender
+  o DateTime dateofbirth optional
 }
 
-asset SampleAsset identified by assetId {
+participant Patient extends Person {
+  o String medicalRecordNumber optional
+  o String resourceUri optional
+  o String resourceHash optional
+  o Address address optional
+}
+
+participant Provider extends Person {
+  o String medicalIdNumber optional
+  o String resourceUri optional
+  o String resourceHash optional
+  o Address address optional
+}
+
+participant Organization identified by organizationId {
+  o String organizationId
+  o String name
+  o Address address
+}
+
+/* 
+* This is the abstract asset that controls all subsequent data assets. Each asset belongs to a Patient
+* sharedWith is the list of Persons or organizations with whom the data asset is shared
+*/
+
+abstract asset PatientData identified by assetId {
   o String assetId
-  --> SampleParticipant owner
-  o String value
+  --> Patient owner
+  o String detail optional
+  o String resourceUri optional
+  o String resourceHash optional
+  o String [] sharedWith optional
 }
 
-transaction SampleTransaction {
-  --> SampleAsset asset
-  o String newValue
+enum MedicationStatus {
+  o ACTIVE
+  o INACTIVE
+  o ENTERED_IN_ERROR
 }
 
-event SampleEvent {
-  --> SampleAsset asset
-  o String oldValue
-  o String newValue
+asset Medication extends PatientData {
+  o MedicationStatus status 
+}
+
+asset Procedure extends PatientData {
+  o String procedureName 
+}
+
+asset ImagingStudy extends PatientData {
+  o String modality
+  o String note optional
+}
+
+transaction TransferMedicationConsentToProvider {
+  --> Medication asset
+  o Provider provider
+}
+
+transaction TransferProcedureConsentToProvider {
+  --> Procedure asset
+  o Provider provider
+}
+
+event ItemShared {
+  --> Medication asset
+  o Provider provider
 }

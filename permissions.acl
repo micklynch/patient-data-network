@@ -17,26 +17,44 @@
  */
 rule EverybodyCanReadEverything {
     description: "Allow all participants read access to all resources"
-    participant: "org.cc.patientdatanetwork.SampleParticipant"
+    participant: "org.cc.patientdatanetwork.Patient"
     operation: READ
     resource: "org.cc.patientdatanetwork.*"
     action: ALLOW
 }
 
-rule EverybodyCanSubmitTransactions {
+rule EverybodyCanSubmitMedicationTransactions {
     description: "Allow all participants to submit transactions"
-    participant: "org.cc.patientdatanetwork.SampleParticipant"
+    participant: "org.cc.patientdatanetwork.Patient"
     operation: CREATE
-    resource: "org.cc.patientdatanetwork.SampleTransaction"
+    resource: "org.cc.patientdatanetwork.TransferMedicationConsentToProvider"
+    action: ALLOW
+}
+
+
+rule EverybodyCanSubmitProcedureTransactions {
+    description: "Allow all participants to submit transactions"
+    participant: "org.cc.patientdatanetwork.Patient"
+    operation: CREATE
+    resource: "org.cc.patientdatanetwork.TransferProcedureConsentToProvider"
     action: ALLOW
 }
 
 rule OwnerHasFullAccessToTheirAssets {
     description: "Allow all participants full access to their assets"
-    participant(p): "org.cc.patientdatanetwork.SampleParticipant"
+    participant(p): "org.cc.patientdatanetwork.Patient"
     operation: ALL
-    resource(r): "org.cc.patientdatanetwork.SampleAsset"
+    resource(r): "org.cc.patientdatanetwork.*"
     condition: (r.owner.getIdentifier() === p.getIdentifier())
+    action: ALLOW
+}
+
+rule ProvidersCanAccessSharedAssets {
+    description: "Allow participants access to other people's records if granted"
+    participant(p): "org.cc.patientdatanetwork.Provider"
+    operation: ALL
+    resource(r): "org.cc.patientdatanetwork.**"
+    condition: (r.sharedWith.indexOf(p.getIdentifier()) > -1)
     action: ALLOW
 }
 
