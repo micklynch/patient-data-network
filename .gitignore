@@ -13,3 +13,6 @@ DevServer_connection.json
 
 # Don't include any of my VSCode specifics
 .vscode
+
+# Don't include an testing output
+.nyc_output
