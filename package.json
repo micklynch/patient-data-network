@@ -31,6 +31,7 @@
     "eslint": "latest",
     "nyc": "latest",
     "mkdirp": "latest",
-    "mocha": "latest"
+    "mocha": "latest",
+    "ajv": "^6.5.4"
   }
 }

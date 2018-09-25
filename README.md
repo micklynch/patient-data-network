@@ -1,5 +1,6 @@
 # Patient Data Network
 <img src="resources/maimi.png" style="width:100px;float:right;padding:20px"/>
+
 _A safe, secure and transparent network for sharing health data_
 
 The Patient Data Network is a project that enables people to access and share their health data between people, healthcare professionals and healthcare providers. It is built on the _[Hyperledger Blockchain Fabric](https://www.hyperledger.org)_ and uses _[HL7 FHIR](https://www.hl7.org/fhir/)_ resources.
