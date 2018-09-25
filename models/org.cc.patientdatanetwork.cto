@@ -22,6 +22,7 @@ participant SampleParticipant identified by participantId {
   o String participantId
   o String firstName
   o String lastName
+  o String address
 }
 
 asset SampleAsset identified by assetId {

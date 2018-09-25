@@ -1,0 +1,15 @@
+# Node modules
+node_modules
+
+# Output files
+dist
+
+# Details of my specific connection
+DevServer_connection.json
+
+# Don't include any cards or bna files
+*.card
+*.bna
+
+# Don't include any of my VSCode specifics
+.vscode
