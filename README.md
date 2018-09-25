@@ -1,5 +1,6 @@
 # Patient Data Network
-<img src="resources/maimi.png" style="width:100px;float:right;padding:20px"/>
+
+<img align="right" src="resources/maimi.png" padding="20px" width="100px"/>
 
 _A safe, secure and transparent network for sharing health data_
 
