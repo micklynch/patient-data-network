@@ -160,6 +160,11 @@ event MedicationSharedwithPractitioner {
   o Practitioner practitioner
 }
 
+event ProcedureSharedwithPractitioner {
+  --> Procedure asset
+  o Practitioner practitioner
+}
+
 event MedicationSharedWithOrg {
   --> Medication asset
   o Organization organization
