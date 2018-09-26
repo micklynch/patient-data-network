@@ -143,8 +143,11 @@ Feature: Sample
     Scenario: Alice can submit a transaction for her assets
         When I use the identity alice1
         And I submit the following transaction of type org.cc.patientdatanetwork.TransferProcedureConsentToPractitioner
-            | asset | newValue |
-            | 1     | 50       |
+            """
+            [
+                {"$class":"org.cc.patientdatanetwork.TransferProcedureConsentToPractitioner", "assetId":"1", "practitioner":"practitionersWithAccess = [zara@email.com]"}
+            ]
+            """
         Then I should have the following assets of type org.cc.patientdatanetwork.Procedure
             | assetId | owner           | procedureName |
             | 1       | alice@email.com | 50    |
