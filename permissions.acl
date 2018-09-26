@@ -27,7 +27,7 @@ rule EverybodyCanSubmitMedicationTransactions {
     description: "Allow all participants to submit transactions"
     participant: "org.cc.patientdatanetwork.Patient"
     operation: CREATE
-    resource: "org.cc.patientdatanetwork.TransferMedicationConsentToProvider"
+    resource: "org.cc.patientdatanetwork.TransferMedicationConsentToPractitioner"
     action: ALLOW
 }
 
@@ -36,7 +36,7 @@ rule EverybodyCanSubmitProcedureTransactions {
     description: "Allow all participants to submit transactions"
     participant: "org.cc.patientdatanetwork.Patient"
     operation: CREATE
-    resource: "org.cc.patientdatanetwork.TransferProcedureConsentToProvider"
+    resource: "org.cc.patientdatanetwork.TransferProcedureConsentToPractitioner"
     action: ALLOW
 }
 
@@ -49,9 +49,9 @@ rule OwnerHasFullAccessToTheirAssets {
     action: ALLOW
 }
 
-rule ProvidersCanAccessSharedAssets {
+rule PractitionersCanAccessSharedAssets {
     description: "Allow participants access to other people's records if granted"
-    participant(p): "org.cc.patientdatanetwork.Provider"
+    participant(p): "org.cc.patientdatanetwork.Practitioner"
     operation: ALL
     resource(r): "org.cc.patientdatanetwork.**"
     condition: (r.sharedWith.indexOf(p.getIdentifier()) > -1)

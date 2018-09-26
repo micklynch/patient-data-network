@@ -31,9 +31,9 @@ const assetType = 'Procedure';
 const assetNS = namespace + '.' + assetType;
 const organizationType = 'Organization';
 const patientType = 'Patient';
-const providerType = 'Provider';
+const practitionerType = 'Practitioner';
 const patientNS = namespace + '.' + patientType;
-const providerNS = namespace + '.' + providerType;
+const practitionerNS = namespace + '.' + practitionerType;
 const organizationNS = namespace+ '.' + organizationType;
 
 describe('#' + namespace, () => {
@@ -157,15 +157,15 @@ describe('#' + namespace, () => {
         patientRegistry.addAll([alice, bob]);
 
 
-        const providerRegistry = await businessNetworkConnection.getParticipantRegistry(providerNS);
-        // create the providers
-        const zara = factory.newResource(namespace, providerType, 'zara@email.com');
+        const practitionerRegistry = await businessNetworkConnection.getParticipantRegistry(practitionerNS);
+        // create the practitioners
+        const zara = factory.newResource(namespace, practitionerType, 'zara@email.com');
         zara.workingAt = hospitalABC;
         zara.firstName = 'Zara';
         zara.lastName = 'Doctor';
         zara.gender = 'f';
 
-        providerRegistry.addAll([zara]);
+        practitionerRegistry.addAll([zara]);
 
         const assetRegistry = await businessNetworkConnection.getAssetRegistry(assetNS);
         // Create the assets.
@@ -184,7 +184,7 @@ describe('#' + namespace, () => {
         await importCardForIdentity(aliceCardName, identity);
         identity = await businessNetworkConnection.issueIdentity(patientNS + '#bob@email.com', 'bob1');
         await importCardForIdentity(bobCardName, identity);
-        identity = await businessNetworkConnection.issueIdentity(providerNS + '#zara@email.com', 'zara1');
+        identity = await businessNetworkConnection.issueIdentity(practitionerNS + '#zara@email.com', 'zara1');
         await importCardForIdentity(zaraCardName, identity);
         identity = await businessNetworkConnection.issueIdentity(organizationNS + '#1111', 'hospital1');
         await importCardForIdentity(hospitalABCCardName, identity);
@@ -416,9 +416,9 @@ describe('#' + namespace, () => {
         await useIdentity(aliceCardName);
 
         // Submit the transaction.
-        const transaction = factory.newTransaction(namespace, 'TransferProcedureConsentToProvider');
+        const transaction = factory.newTransaction(namespace, 'TransferProcedureConsentToPractitioner');
         transaction.asset = factory.newRelationship(namespace, assetType, '1');
-        transaction.provider = factory.newRelationship(namespace, providerType, 'zara@email.com');
+        transaction.practitioner = factory.newRelationship(namespace, practitionerType, 'zara@email.com');
         await businessNetworkConnection.submitTransaction(transaction);
 
         // Get the asset.
@@ -443,9 +443,9 @@ describe('#' + namespace, () => {
         await useIdentity(aliceCardName);
 
         // Submit the transaction.
-        const transaction = factory.newTransaction(namespace, 'TransferProcedureConsentToProvider');
+        const transaction = factory.newTransaction(namespace, 'TransferProcedureConsentToPractitioner');
         transaction.asset = factory.newRelationship(namespace, assetType, '2');
-        transaction.provider = factory.newRelationship(namespace, providerType, 'zara@email.com');
+        transaction.practitioner = factory.newRelationship(namespace, practitionerType, 'zara@email.com');
         businessNetworkConnection.submitTransaction(transaction).should.be.rejectedWith(/does not have .* access to resource/);
     });
 
@@ -454,7 +454,7 @@ describe('#' + namespace, () => {
         await useIdentity(bobCardName);
 
         // Submit the transaction.
-        const transaction = factory.newTransaction(namespace, 'TransferProcedureConsentToProvider');
+        const transaction = factory.newTransaction(namespace, 'TransferProcedureConsentToPractitioner');
         transaction.asset = factory.newRelationship(namespace, assetType, '2');
         transaction.newValue = 'Injection';
         await businessNetworkConnection.submitTransaction(transaction);
@@ -481,9 +481,9 @@ describe('#' + namespace, () => {
         await useIdentity(bobCardName);
 
         // Submit the transaction.
-        const transaction = factory.newTransaction(namespace, 'TransferProcedureConsentToProvider');
+        const transaction = factory.newTransaction(namespace, 'TransferProcedureConsentToPractitioner');
         transaction.asset = factory.newRelationship(namespace, assetType, '1');
-        transaction.provider = factory.newRelationship(namespace, providerType, 'zara@email.com');
+        transaction.practitioner = factory.newRelationship(namespace, practitionerType, 'zara@email.com');
         businessNetworkConnection.submitTransaction(transaction).should.be.rejectedWith(/does not have .* access to resource/);
     });
 

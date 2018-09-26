@@ -4,13 +4,13 @@
 
 _A secure and transparent network for sharing health data_
 
-The Patient Data Network is a project that enables people to access and share their health data between people, healthcare professionals and healthcare providers. It is built on the _[Hyperledger Blockchain Fabric](https://www.hyperledger.org)_ and uses _[HL7 FHIR](https://www.hl7.org/fhir/)_ resources.
+The Patient Data Network is a project that enables people to access and share their health data between people, healthcare professionals and healthcare practitioners. It is built on the _[Hyperledger Blockchain Fabric](https://www.hyperledger.org)_ and uses _[HL7 FHIR](https://www.hl7.org/fhir/)_ resources.
 
 The network consists of three categories;
 
 ### Participants
 * Patients 
-* Individual Healthcare Providers (doctors, dentists, physiotherapists, chiropractors etc.)
+* Individual Healthcare Practitioners (doctors, dentists, physiotherapists, chiropractors etc.)
 * Healthcare Organizations (Hospitals, research organizations, insurers)
 
 ### Assets
@@ -80,7 +80,7 @@ v0.20.0
 * Run `composer-playground` from the terminal
 * Open [http://localhost:8080](http://localhost:8080) in your browser of choice
 * At the bottom of the `admin@patient-data-network` card, you can click on the _"Connect now"_ link
-* Now you are up and running, feel free to play around by switching your ID in the ID Registry between patients and providers..
+* Now you are up and running, feel free to play around by switching your ID in the ID Registry between patients and practitioners..
 * Feedback and contributions are welcome
 
 ---

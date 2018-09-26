@@ -59,7 +59,7 @@ participant Patient extends Person {
   o Address address optional
 }
 
-participant Provider extends Person {
+participant Practitioner extends Person {
   o String medicalIdNumber optional
   o Organization workingAt
   o String resourceUri optional
@@ -75,7 +75,7 @@ participant Organization identified by organizationId {
 
 /* 
 * This is the abstract asset that controls all subsequent data assets. Each asset belongs to a Patient
-* - providersWithAccess is the list of providers with whom the data asset is shared
+* - practitionersWithAccess is the list of practitioners with whom the data asset is shared
 * - orgsWithAccess is the list of organizations with whom the data asset is shared
 */
 
@@ -85,7 +85,7 @@ abstract asset PatientData identified by assetId {
   --> Organization custodian optional
   o String resourceUri optional
   o String resourceHash optional
-  o String [] providersWithAccess optional
+  o String [] practitionersWithAccess optional
   o String [] orgsWithAccess optional
 }
 
@@ -110,17 +110,37 @@ asset ImagingStudy extends PatientData {
   o String note optional
 }
 
-/**
- * Sharing with Providers
- */
-transaction TransferMedicationConsentToProvider {
-  --> Medication asset
-  o Provider provider
+asset Encounter extends PatientData {
+  o String detail optional
 }
 
-transaction TransferProcedureConsentToProvider {
+asset Observation extends PatientData {
+  o String detail optional
+}
+
+asset Appointment extends PatientData {
+  o String detail optional
+}
+
+asset Immunization extends PatientData {
+  o String detail optional
+}
+
+asset Questionnaire extends PatientData {
+  o String questionnaireName optional
+}
+
+/**
+ * Sharing with Practitioners
+ */
+transaction TransferMedicationConsentToPractitioner {
+  --> Medication asset
+  o Practitioner practitioner
+}
+
+transaction TransferProcedureConsentToPractitioner {
   --> Procedure asset
-  o Provider provider
+  o Practitioner practitioner
 }
 
 /**
@@ -135,9 +155,9 @@ transaction TransferMedicationConsentToOrg {
 /**
  * Events
  */
-event MedicationSharedwithProvider {
+event MedicationSharedwithPractitioner {
   --> Medication asset
-  o Provider provider
+  o Practitioner practitioner
 }
 
 event MedicationSharedWithOrg {
