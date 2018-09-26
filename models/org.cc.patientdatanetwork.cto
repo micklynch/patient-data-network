@@ -48,12 +48,12 @@ abstract participant Person identified by participantId {
   o String participantId
   o String firstName
   o String lastName
-  o String gender
+  o String gender optional
   o DateTime dateofbirth optional
 }
 
 participant Patient extends Person {
-  o String medicalRecordNumber optional
+  o String medicalRecordNumber
   o String resourceUri optional
   o String resourceHash optional
   o Address address optional
@@ -61,6 +61,7 @@ participant Patient extends Person {
 
 participant Provider extends Person {
   o String medicalIdNumber optional
+  o Organization workingAt
   o String resourceUri optional
   o String resourceHash optional
   o Address address optional
@@ -69,21 +70,23 @@ participant Provider extends Person {
 participant Organization identified by organizationId {
   o String organizationId
   o String name
-  o Address address
+  o Address address optional
 }
 
 /* 
 * This is the abstract asset that controls all subsequent data assets. Each asset belongs to a Patient
-* sharedWith is the list of Persons or organizations with whom the data asset is shared
+* - providersWithAccess is the list of providers with whom the data asset is shared
+* - orgsWithAccess is the list of organizations with whom the data asset is shared
 */
 
 abstract asset PatientData identified by assetId {
   o String assetId
   --> Patient owner
-  o String detail optional
+  --> Organization custodian optional
   o String resourceUri optional
   o String resourceHash optional
-  o String [] sharedWith optional
+  o String [] providersWithAccess optional
+  o String [] orgsWithAccess optional
 }
 
 enum MedicationStatus {
@@ -93,11 +96,13 @@ enum MedicationStatus {
 }
 
 asset Medication extends PatientData {
-  o MedicationStatus status 
+  o MedicationStatus status
+  o String detail optional
 }
 
 asset Procedure extends PatientData {
   o String procedureName 
+  o String detail optional
 }
 
 asset ImagingStudy extends PatientData {
@@ -105,6 +110,9 @@ asset ImagingStudy extends PatientData {
   o String note optional
 }
 
+/**
+ * Sharing with Providers
+ */
 transaction TransferMedicationConsentToProvider {
   --> Medication asset
   o Provider provider
@@ -115,7 +123,24 @@ transaction TransferProcedureConsentToProvider {
   o Provider provider
 }
 
-event ItemShared {
+/**
+ * Sharing with Orgs
+ */
+
+transaction TransferMedicationConsentToOrg {
+  --> Medication asset
+  o Organization organization
+}
+
+/**
+ * Events
+ */
+event MedicationSharedwithProvider {
   --> Medication asset
   o Provider provider
+}
+
+event MedicationSharedWithOrg {
+  --> Medication asset
+  o Organization organization
 }

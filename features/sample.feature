@@ -16,10 +16,13 @@ Feature: Sample
 
     Background:
         Given I have deployed the business network definition ..
-        And I have added the following participants of type org.cc.patientdatanetwork.Patient
-            | participantId   | firstName | lastName |
-            | alice@email.com | Alice     | A        |
-            | bob@email.com   | Bob       | B        |
+        And I have added the following organizations of type org.cc.patientdatanetwork.Organization
+            | organizationId    | name          | 
+            |   1111            | HospitalABC   | 
+        And I have added the following patients of type org.cc.patientdatanetwork.Patient
+            | participantId   | firstName | lastName | medicalRecordNumber  |
+            | alice@email.com | Alice     | A        | 1234                 |
+            | bob@email.com   | Bob       | B        | 2345                 |
         And I have added the following assets of type org.cc.patientdatanetwork.Procedure
             | assetId | owner           | procedureName |
             | 1       | alice@email.com | 10    |

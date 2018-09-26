@@ -2,7 +2,7 @@
 
 <img align="right" src="resources/maimi.png" padding="20px" width="100px"/>
 
-_A safe, secure and transparent network for sharing health data_
+_A secure and transparent network for sharing health data_
 
 The Patient Data Network is a project that enables people to access and share their health data between people, healthcare professionals and healthcare providers. It is built on the _[Hyperledger Blockchain Fabric](https://www.hyperledger.org)_ and uses _[HL7 FHIR](https://www.hl7.org/fhir/)_ resources.
 
@@ -15,14 +15,16 @@ The network consists of three categories;
 
 ### Assets
 * Procedure
-* ImagingStudy
+* Imaging Study
 * Medication
+* ...
+* ...
 
 ### Transaction
-* Consent
+* Consent to share data assets
 
 
-In FHIR, we have an Audit resource, but that is implicit in the blockchain transactions.
+In FHIR, we have an Audit resource, but that is implicit in the blockchain transactions. The data doesn't live on the blockchain, but instead the blockchain holds a link to the resource which is stored at the healthcare organization. We also store a hash of the data ensuring that the data is not tampered with.
 
 ***
 

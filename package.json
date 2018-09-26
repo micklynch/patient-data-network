@@ -3,8 +3,8 @@
     "composer": "^0.20.0"
   },
   "name": "patient-data-network",
-  "version": "0.0.1",
-  "description": "A safe, secure and transparent network for sharing health data",
+  "version": "0.0.4",
+  "description": "A secure and transparent network for sharing health data",
   "scripts": {
     "prepublish": "mkdirp ./dist && composer archive create --sourceType dir --sourceName . -a ./dist/patient-data-network.bna",
     "pretest": "npm run lint",
@@ -16,7 +16,6 @@
     "composer-network"
   ],
   "author": "Mick Lynch",
-  "email": "mick.lynch@gmail.com",
   "license": "Apache-2.0",
   "devDependencies": {
     "composer-admin": "^0.20.0",
