@@ -418,7 +418,8 @@ describe('#' + namespace, () => {
         // Submit the transaction.
         const transaction = factory.newTransaction(namespace, 'TransferProcedureConsentToPractitioner');
         transaction.asset = factory.newRelationship(namespace, assetType, '1');
-        transaction.practitioner = factory.newRelationship(namespace, practitionerType, 'zara@email.com');
+        const practitionerRegistry = await businessNetworkConnection.getParticipantRegistry(practitionerNS);
+        transaction.practitioner = await practitionerRegistry.get('zara@email.com');
         await businessNetworkConnection.submitTransaction(transaction);
 
         // Get the asset.
@@ -435,7 +436,7 @@ describe('#' + namespace, () => {
         event.eventId.should.be.a('string');
         event.timestamp.should.be.an.instanceOf(Date);
         event.asset.getFullyQualifiedIdentifier().should.equal(assetNS + '#1');
-        event.procedureName.should.equal('Labotomy');
+        //event.practitionersWithAccess.should.contain('zara@email.com');
     });
 
     it('Alice cannot submit a transaction for Bob\'s assets', async () => {
@@ -456,7 +457,8 @@ describe('#' + namespace, () => {
         // Submit the transaction.
         const transaction = factory.newTransaction(namespace, 'TransferProcedureConsentToPractitioner');
         transaction.asset = factory.newRelationship(namespace, assetType, '2');
-        transaction.newValue = 'Injection';
+        const practitionerRegistry = await businessNetworkConnection.getParticipantRegistry(practitionerNS);
+        transaction.practitioner = await practitionerRegistry.get('zara@email.com');
         await businessNetworkConnection.submitTransaction(transaction);
 
         // Get the asset.
@@ -465,7 +467,7 @@ describe('#' + namespace, () => {
 
         // Validate the asset.
         asset2.owner.getFullyQualifiedIdentifier().should.equal(patientNS + '#bob@email.com');
-        asset2.procedureName.should.equal('Injection');
+        //asset2.procedureName.should.equal('Injection');
 
         // Validate the events.
         events.should.have.lengthOf(1);
@@ -473,7 +475,6 @@ describe('#' + namespace, () => {
         event.eventId.should.be.a('string');
         event.timestamp.should.be.an.instanceOf(Date);
         event.asset.getFullyQualifiedIdentifier().should.equal(assetNS + '#2');
-        event.procedureName.should.equal('Injection');
     });
 
     it('Bob cannot submit a transaction for Alice\'s assets', async () => {
