@@ -26,6 +26,8 @@ The network consists of three categories;
 
 In FHIR, we have an Audit resource, but that is implicit in the blockchain transactions. The data doesn't live on the blockchain, but instead the blockchain holds a link to the resource which is stored at the healthcare organization. We also store a hash of the data ensuring that the data is not tampered with.
 
+Please check our project Wiki page for details on how to contribute...
+
 ***
 
 ## Building the network
@@ -36,24 +38,24 @@ Here are the specific versions of software that were used to build this project:
 
 ### Node
 Node installation was performed using [NVM](https://github.com/creationix/nvm) (Node Version Manager)
-```{r, engine='bash', count_lines}
+```
 $ nvm --version
 0.33.0
 ```
 We are using the LTS version of Node
-```{r, engine='bash', count_lines}
+```
 $ nvm current
 v8.12.0
 ```
 ### Docker
 
-```{r, engine='bash', count_lines}
+```
 $ docker --version
 Docker version 18.06.1-ce, build e68fc7a215
 
 ```
 ### Microsoft Visual Code
-```{r, engine='bash', count_lines}
+```
 $ code --version
 1.27.2
 
@@ -62,7 +64,7 @@ After installation, we installed the Hypledger CTO plugin.
 
 ### Hyperledger Composer
 
-```{r, engine='bash', count_lines}
+```
 $ composer --version
 v0.20.0
 ```
@@ -73,7 +75,7 @@ v0.20.0
     * The `$FABRIC_VERSION`, which I am using hlfv12 
     * The location of the Fabric Dev Servers with the variable `$FABRIC_DEV_SERVERS`
 * Run the script file to start the network
-    ```{r, engine='bash', count_lines}
+    ```
     $./startNetwork.sh <version#>
     ```
     The ```<version#>``` must be the version number that appears in the [`package.json`](package.json) file 
