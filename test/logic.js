@@ -446,7 +446,8 @@ describe('#' + namespace, () => {
         // Submit the transaction.
         const transaction = factory.newTransaction(namespace, 'TransferProcedureConsentToPractitioner');
         transaction.asset = factory.newRelationship(namespace, assetType, '2');
-        transaction.practitioner = factory.newRelationship(namespace, practitionerType, 'zara@email.com');
+        const practitionerRegistry = await businessNetworkConnection.getParticipantRegistry(practitionerNS);
+        transaction.practitioner = await practitionerRegistry.get('zara@email.com');
         businessNetworkConnection.submitTransaction(transaction).should.be.rejectedWith(/does not have .* access to resource/);
     });
 
@@ -484,7 +485,8 @@ describe('#' + namespace, () => {
         // Submit the transaction.
         const transaction = factory.newTransaction(namespace, 'TransferProcedureConsentToPractitioner');
         transaction.asset = factory.newRelationship(namespace, assetType, '1');
-        transaction.practitioner = factory.newRelationship(namespace, practitionerType, 'zara@email.com');
+        const practitionerRegistry = await businessNetworkConnection.getParticipantRegistry(practitionerNS);
+        transaction.practitioner = await practitionerRegistry.get('zara@email.com');
         businessNetworkConnection.submitTransaction(transaction).should.be.rejectedWith(/does not have .* access to resource/);
     });
 
