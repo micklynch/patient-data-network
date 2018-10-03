@@ -61,7 +61,7 @@ participant Patient extends Person {
 
 participant Practitioner extends Person {
   o String medicalIdNumber optional
-  o Organization workingAt
+  --> Organization workingAt
   o String resourceUri optional
   o String resourceHash optional
   o Address address optional
@@ -133,39 +133,33 @@ asset Questionnaire extends PatientData {
 /**
  * Sharing with Practitioners
  */
-transaction TransferMedicationConsentToPractitioner {
-  --> Medication asset
-  o Practitioner practitioner
-}
-
-transaction TransferProcedureConsentToPractitioner {
-  --> Procedure asset
-  o Practitioner practitioner
+transaction ShareWithPractitioner {
+  o String assetType
+  o String assetReference
+  --> Practitioner practitioner
 }
 
 /**
  * Sharing with Orgs
  */
 
-transaction TransferMedicationConsentToOrg {
-  --> Medication asset
-  o Organization organization
+transaction ShareWithOrg {
+  o String assetType
+  o String assetReference
+  --> Organization organization
 }
 
 /**
  * Events
  */
-event MedicationSharedwithPractitioner {
-  --> Medication asset
-  o Practitioner practitioner
+event AssetSharedwithPractitioner {
+  o String assetType
+  o String assetReference
+  --> Practitioner practitioner
 }
 
-event ProcedureSharedwithPractitioner {
-  --> Procedure asset
-  o Practitioner practitioner
-}
-
-event MedicationSharedWithOrg {
-  --> Medication asset
-  o Organization organization
+event AssetSharedWithOrg {
+  o String assetType
+  o String assetReference
+  --> Organization organization
 }

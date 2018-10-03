@@ -14,5 +14,8 @@ DevServer_connection.json
 # Don't include any of my VSCode specifics
 .vscode
 
-# Don't include an testing output
+# Don't include any testing output
 .nyc_output
+
+# Don't include my hack for cleaning my system (it might make other people's machines explode)
+removeDockerImages.sh

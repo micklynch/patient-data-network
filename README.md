@@ -4,7 +4,7 @@
 
 _A secure and transparent network for sharing health data_
 
-The Patient Data Network is a project that enables people to access and share their health data between people, healthcare professionals and healthcare practitioners. It is built on the _[Hyperledger Blockchain Fabric](https://www.hyperledger.org)_ and uses _[HL7 FHIR](https://www.hl7.org/fhir/)_ resources.
+The Patient Data Network is a project that enables people to access and share their health data between people, healthcare professionals and healthcare practitioners. It is built with the _[Hyperledger Blockchain Composer](https://www.hyperledger.org)_ and uses _[HL7 FHIR](https://www.hl7.org/fhir/)_ resources.
 
 The network consists of three categories;
 
@@ -32,7 +32,9 @@ Please check our project Wiki page for details on how to contribute...
 
 ## Building the network
 
-To build the project, you must follow the installation instructions given on the [Hyperledger Fabric Installation guide](https://hyperledger.github.io/composer/v0.19/installing/installing-index).
+To build the project, you must follow the installation instructions given on the [Hyperledger Composer Installation guide](https://hyperledger.github.io/composer/v0.19/installing/installing-index).
+
+Please follow *all* the steps to install the Development Environment of Hyperledger Composer for your OS.
 
 Here are the specific versions of software that were used to build this project:
 
@@ -88,7 +90,7 @@ v0.20.0
 ---
 
 ## Acknowledgements
-Thank you to the Hyperledger Project and HL7 FHIR creators and contributors, without whom this project would not exist.
+Thank you to the Hyperledger Composer Project and HL7 FHIR creators and contributors, without whom this project would not exist.
 
 ## Creator
 [Mick Lynch](https://mlynch.redbrick.dcu.ie) is an engineer PhD who loves translating ideas into novel products that have a real impact. He has been working in health IT, software development and team management since 2006.
