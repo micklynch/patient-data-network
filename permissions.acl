@@ -23,20 +23,20 @@ rule EverybodyCanReadEverything {
     action: ALLOW
 }
 
-rule EverybodyCanSubmitMedicationTransactions {
+rule EveryoneCanShareTheirOwnAssetsWithAPractitioner {
     description: "Allow all participants to submit transactions"
     participant: "org.cc.patientdatanetwork.Patient"
     operation: CREATE
-    resource: "org.cc.patientdatanetwork.TransferMedicationConsentToPractitioner"
+    resource: "org.cc.patientdatanetwork.ShareWithPractitioner"
     action: ALLOW
 }
 
 
-rule EverybodyCanSubmitProcedureTransactions {
+rule EveryoneCanShareTheirOwnAssetsWithAnOrg {
     description: "Allow all participants to submit transactions"
     participant: "org.cc.patientdatanetwork.Patient"
     operation: CREATE
-    resource: "org.cc.patientdatanetwork.TransferProcedureConsentToPractitioner"
+    resource: "org.cc.patientdatanetwork.ShareWithOrg"
     action: ALLOW
 }
 

@@ -160,7 +160,7 @@ describe('#' + namespace, () => {
         const practitionerRegistry = await businessNetworkConnection.getParticipantRegistry(practitionerNS);
         // create the practitioners
         const zara = factory.newResource(namespace, practitionerType, 'zara@email.com');
-        zara.workingAt = hospitalABC;
+        zara.workingAt = factory.newRelationship(namespace, organizationType, '#1111');
         zara.firstName = 'Zara';
         zara.lastName = 'Doctor';
         zara.gender = 'f';
@@ -416,10 +416,10 @@ describe('#' + namespace, () => {
         await useIdentity(aliceCardName);
 
         // Submit the transaction.
-        const transaction = factory.newTransaction(namespace, 'TransferProcedureConsentToPractitioner');
-        transaction.asset = factory.newRelationship(namespace, assetType, '1');
-        const practitionerRegistry = await businessNetworkConnection.getParticipantRegistry(practitionerNS);
-        transaction.practitioner = await practitionerRegistry.get('zara@email.com');
+        const transaction = factory.newTransaction(namespace, 'ShareWithPractitioner');
+        transaction.assetType = namespace+'.'+assetType;
+        transaction.assetReference = '1';
+        transaction.practitioner = factory.newRelationship(namespace, practitionerType, 'zara@email.com');
         await businessNetworkConnection.submitTransaction(transaction);
 
         // Get the asset.
@@ -435,8 +435,7 @@ describe('#' + namespace, () => {
         const event = events[0];
         event.eventId.should.be.a('string');
         event.timestamp.should.be.an.instanceOf(Date);
-        event.asset.getFullyQualifiedIdentifier().should.equal(assetNS + '#1');
-        //event.practitionersWithAccess.should.contain('zara@email.com');
+        event.assetReference.should.equal('1');
     });
 
     it('Alice cannot submit a transaction for Bob\'s assets', async () => {
@@ -444,10 +443,10 @@ describe('#' + namespace, () => {
         await useIdentity(aliceCardName);
 
         // Submit the transaction.
-        const transaction = factory.newTransaction(namespace, 'TransferProcedureConsentToPractitioner');
-        transaction.asset = factory.newRelationship(namespace, assetType, '2');
-        const practitionerRegistry = await businessNetworkConnection.getParticipantRegistry(practitionerNS);
-        transaction.practitioner = await practitionerRegistry.get('zara@email.com');
+        const transaction = factory.newTransaction(namespace, 'ShareWithPractitioner');
+        transaction.assetType = namespace+'.'+assetType;
+        transaction.assetReference = '2';
+        transaction.practitioner = factory.newRelationship(namespace, practitionerType, 'zara@email.com');
         businessNetworkConnection.submitTransaction(transaction).should.be.rejectedWith(/does not have .* access to resource/);
     });
 
@@ -456,10 +455,10 @@ describe('#' + namespace, () => {
         await useIdentity(bobCardName);
 
         // Submit the transaction.
-        const transaction = factory.newTransaction(namespace, 'TransferProcedureConsentToPractitioner');
-        transaction.asset = factory.newRelationship(namespace, assetType, '2');
-        const practitionerRegistry = await businessNetworkConnection.getParticipantRegistry(practitionerNS);
-        transaction.practitioner = await practitionerRegistry.get('zara@email.com');
+        const transaction = factory.newTransaction(namespace, 'ShareWithPractitioner');
+        transaction.assetType = namespace+'.'+assetType;
+        transaction.assetReference = '2';
+        transaction.practitioner = factory.newRelationship(namespace, practitionerType, 'zara@email.com');
         await businessNetworkConnection.submitTransaction(transaction);
 
         // Get the asset.
@@ -475,7 +474,7 @@ describe('#' + namespace, () => {
         const event = events[0];
         event.eventId.should.be.a('string');
         event.timestamp.should.be.an.instanceOf(Date);
-        event.asset.getFullyQualifiedIdentifier().should.equal(assetNS + '#2');
+        event.assetReference.should.equal('2');
     });
 
     it('Bob cannot submit a transaction for Alice\'s assets', async () => {
@@ -483,10 +482,10 @@ describe('#' + namespace, () => {
         await useIdentity(bobCardName);
 
         // Submit the transaction.
-        const transaction = factory.newTransaction(namespace, 'TransferProcedureConsentToPractitioner');
-        transaction.asset = factory.newRelationship(namespace, assetType, '1');
-        const practitionerRegistry = await businessNetworkConnection.getParticipantRegistry(practitionerNS);
-        transaction.practitioner = await practitionerRegistry.get('zara@email.com');
+        const transaction = factory.newTransaction(namespace, 'ShareWithPractitioner');
+        transaction.assetType = namespace+'.'+assetType;
+        transaction.assetReference = '1';
+        transaction.practitioner = factory.newRelationship(namespace, practitionerType, 'zara@email.com');
         businessNetworkConnection.submitTransaction(transaction).should.be.rejectedWith(/does not have .* access to resource/);
     });
 
