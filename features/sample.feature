@@ -30,19 +30,17 @@ Feature: Sample
         And I have issued the participant org.cc.patientdatanetwork.Patient#alice@email.com with the identity alice1
         And I have issued the participant org.cc.patientdatanetwork.Patient#bob@email.com with the identity bob1
 
-    Scenario: Alice can read all of the assets
+    Scenario: Alice can read all of her assets
         When I use the identity alice1
         Then I should have the following assets of type org.cc.patientdatanetwork.Procedure
             | assetId | owner           | procedureName |
-            | 1       | alice@email.com | 10    |
-            | 2       | bob@email.com   | 20    |
+            | 1       | alice@email.com | Operation     |
 
     Scenario: Bob can read all of the assets
         When I use the identity alice1
         Then I should have the following assets of type org.cc.patientdatanetwork.Procedure
             | assetId | owner           | procedureName |
-            | 1       | alice@email.com | 10    |
-            | 2       | bob@email.com   | 20    |
+            | 2       | bob@email.com   | Amputation    |
 
     Scenario: Alice can add assets that she owns
         When I use the identity alice1
