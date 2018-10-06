@@ -205,34 +205,28 @@ describe('#' + namespace, () => {
         factory = businessNetworkConnection.getBusinessNetwork().getFactory();
     }
 
-    it('Alice can read all of the assets', async () => {
+    it('Alice can read all of her assets', async () => {
         // Use the identity for Alice.
         await useIdentity(aliceCardName);
         const assetRegistry = await businessNetworkConnection.getAssetRegistry(assetNS);
         const assets = await assetRegistry.getAll();
 
         // Validate the assets.
-        assets.should.have.lengthOf(2);
+        assets.should.have.lengthOf(1);
         const asset1 = assets[0];
         asset1.owner.getFullyQualifiedIdentifier().should.equal(patientNS + '#alice@email.com');
         asset1.procedureName.should.equal('Operation');
-        const asset2 = assets[1];
-        asset2.owner.getFullyQualifiedIdentifier().should.equal(patientNS + '#bob@email.com');
-        asset2.procedureName.should.equal('Amputation');
     });
 
-    it('Bob can read all of the assets', async () => {
+    it('Bob can read all of his assets', async () => {
         // Use the identity for Bob.
         await useIdentity(bobCardName);
         const assetRegistry = await businessNetworkConnection.getAssetRegistry(assetNS);
         const assets = await assetRegistry.getAll();
 
         // Validate the assets.
-        assets.should.have.lengthOf(2);
-        const asset1 = assets[0];
-        asset1.owner.getFullyQualifiedIdentifier().should.equal(patientNS + '#alice@email.com');
-        asset1.procedureName.should.equal('Operation');
-        const asset2 = assets[1];
+        assets.should.have.lengthOf(1);
+        const asset2 = assets[0];
         asset2.owner.getFullyQualifiedIdentifier().should.equal(patientNS + '#bob@email.com');
         asset2.procedureName.should.equal('Amputation');
     });

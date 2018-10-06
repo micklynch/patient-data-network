@@ -13,14 +13,33 @@
  */
 
 /**
- * Sample access control list.
+ * Rules for data access
  */
-rule EverybodyCanReadEverything {
-    description: "Allow all participants read access to all resources"
-    participant: "org.cc.patientdatanetwork.Patient"
-    operation: READ
-    resource: "org.cc.patientdatanetwork.*"
-    action: ALLOW
+rule PatientsHaveAccessToTheirData {
+  description:      "Allow patients to see all of their data"
+  participant(p):   "org.cc.patientdatanetwork.Patient"
+  operation: ALL
+  resource(r): "org.cc.patientdatanetwork.*"
+  condition: (r.owner.getIdentifier() == p.getIdentifier())
+  action: ALLOW
+}
+
+rule PractitionersCanSeeDataSharedWithThem {
+  description:      "Allow practitioners to see data that is shared with them"
+  participant(p):   "org.cc.patientdatanetwork.Practitioner"
+  operation: READ, UPDATE
+  resource(r): "org.cc.patientdatanetwork.*"
+  condition: (r.practitionersWithAccess.indexOf(p.getIdentifier()) > -1)
+  action: ALLOW
+}
+
+rule OrgsCanSeeTheirData {
+  description:      "Allow organizations to see data where they are the custodian"
+  participant(p):   "org.cc.patientdatanetwork.Organization"
+  operation: READ
+  resource(r): "org.cc.patientdatanetwork.*"
+  condition: (r.orgsWithAccess.indexOf(p.getIdentifier()) > -1)
+  action: ALLOW
 }
 
 rule EveryoneCanShareTheirOwnAssetsWithAPractitioner {
@@ -37,24 +56,6 @@ rule EveryoneCanShareTheirOwnAssetsWithAnOrg {
     participant: "org.cc.patientdatanetwork.Patient"
     operation: CREATE
     resource: "org.cc.patientdatanetwork.ShareWithOrg"
-    action: ALLOW
-}
-
-rule OwnerHasFullAccessToTheirAssets {
-    description: "Allow all participants full access to their assets"
-    participant(p): "org.cc.patientdatanetwork.Patient"
-    operation: ALL
-    resource(r): "org.cc.patientdatanetwork.*"
-    condition: (r.owner.getIdentifier() === p.getIdentifier())
-    action: ALLOW
-}
-
-rule PractitionersCanAccessSharedAssets {
-    description: "Allow participants access to other people's records if granted"
-    participant(p): "org.cc.patientdatanetwork.Practitioner"
-    operation: ALL
-    resource(r): "org.cc.patientdatanetwork.**"
-    condition: (r.sharedWith.indexOf(p.getIdentifier()) > -1)
     action: ALLOW
 }
 

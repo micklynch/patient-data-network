@@ -3,7 +3,7 @@
     "composer": "^0.20.0"
   },
   "name": "patient-data-network",
-  "version": "0.0.3",
+  "version": "0.0.2",
   "description": "A secure and transparent network for sharing health data",
   "scripts": {
     "prepublish": "mkdirp ./dist && composer archive create --sourceType dir --sourceName . -a ./dist/patient-data-network.bna",
