@@ -749,11 +749,15 @@ transaction ShareWithOrg {
 event AssetSharedwithPractitioner {
   o String assetType
   o String assetReference
+  o String auditResourceUri optional
+  o String resourceHash optional
   --> Practitioner practitioner
 }
 
 event AssetSharedWithOrg {
   o String assetType
   o String assetReference
+  o String auditResourceUri optional
+  o String resourceHash optional
   --> Organization organization
 }
