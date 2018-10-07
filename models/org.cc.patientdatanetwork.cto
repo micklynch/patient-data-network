@@ -94,41 +94,635 @@ enum MedicationStatus {
   o INACTIVE
   o ENTERED_IN_ERROR
 }
-
+/**
+ * For more details please refer to https://www.hl7.org/fhir/Medication.html 
+ **/
 asset Medication extends PatientData {
   o MedicationStatus status
   o String detail optional
 }
-
+/**
+ * For more details please refer to https://www.hl7.org/fhir/Procedure.html 
+ **/
 asset Procedure extends PatientData {
   o String procedureName 
   o String detail optional
 }
-
+/**
+ * For more details please refer to https://www.hl7.org/fhir/ImagingStudy.html 
+ **/ 
 asset ImagingStudy extends PatientData {
   o String modality
   o String note optional
 }
-
+/**
+ * For more details please refer to https://www.hl7.org/fhir/Encounter.html 
+ **/
 asset Encounter extends PatientData {
   o String detail optional
 }
-
+/**
+ * For more details please refer to https://www.hl7.org/fhir/Observation.html 
+ **/
 asset Observation extends PatientData {
   o String detail optional
 }
-
+/**
+ * For more details please refer to https://www.hl7.org/fhir/Appointment.html 
+ **/
 asset Appointment extends PatientData {
   o String detail optional
 }
-
+/**
+ * For more details please refer to https://www.hl7.org/fhir/Immunization.html 
+ **/
 asset Immunization extends PatientData {
   o String detail optional
 }
-
+/**
+ * For more details please refer to https://www.hl7.org/fhir/Questionnaire.html 
+ **/
 asset Questionnaire extends PatientData {
   o String questionnaireName optional
 }
+/**
+ * For more details please refer to https://www.hl7.org/fhir/QuestionnaireResponse.html 
+ **/ 
+ asset QuestionnaireResponse extends PatientData 
+ { 
+     o String detail optional
+ }
+
+/**
+ * For more details please refer to https://www.hl7.org/fhir/MedicationStatement.html 
+ **/ 
+ asset MedicationStatement extends PatientData 
+ { 
+     o String detail optional
+ }
+/**
+ * For more details please refer to https://www.hl7.org/fhir/Condition.html 
+ **/ 
+ asset Condition extends PatientData 
+ { 
+     o String detail optional
+ }
+/**
+ * For more details please refer to https://www.hl7.org/fhir/MedicationRequest.html 
+ **/ 
+ asset MedicationRequest extends PatientData 
+ { 
+     o String detail optional
+ }
+/**
+ * For more details please refer to https://www.hl7.org/fhir/Claim.html 
+ **/ 
+ asset Claim extends PatientData 
+ { 
+     o String detail optional
+ }
+/**
+ * For more details please refer to https://www.hl7.org/fhir/DiagnosticReport.html 
+ **/ 
+ asset DiagnosticReport extends PatientData 
+ { 
+     o String detail optional
+ }
+/**
+ * For more details please refer to https://www.hl7.org/fhir/CarePlan.html 
+ **/ 
+ asset CarePlan extends PatientData 
+ { 
+     o String detail optional
+ }
+/**
+ * For more details please refer to https://www.hl7.org/fhir/List.html 
+ **/ 
+ asset List extends PatientData 
+ { 
+     o String detail optional
+ }
+/**
+ * For more details please refer to https://www.hl7.org/fhir/HealthcareService.html 
+ **/ 
+ asset HealthcareService extends PatientData 
+ { 
+     o String detail optional
+ }
+/**
+ * For more details please refer to https://www.hl7.org/fhir/MedicationAdministration.html 
+ **/ 
+ asset MedicationAdministration extends PatientData 
+ { 
+     o String detail optional
+ }
+/**
+ * For more details please refer to https://www.hl7.org/fhir/Goal.html 
+ **/ 
+ asset Goal extends PatientData 
+ { 
+     o String detail optional
+ }
+/**
+ * For more details please refer to https://www.hl7.org/fhir/Bundle.html 
+ **/ 
+ asset Bundle extends PatientData 
+ { 
+     o String detail optional
+ }
+/**
+ * For more details please refer to https://www.hl7.org/fhir/AllergyIntolerance.html 
+ **/ 
+ asset AllergyIntolerance extends PatientData 
+ { 
+     o String detail optional
+ }
+/**
+ * For more details please refer to https://www.hl7.org/fhir/Provenance.html 
+ **/ 
+ asset Provenance extends PatientData 
+ { 
+     o String detail optional
+ }
+/**
+ * For more details please refer to https://www.hl7.org/fhir/StructureDefinition.html 
+ **/ 
+ asset StructureDefinition extends PatientData 
+ { 
+     o String detail optional
+ }
+/**
+ * For more details please refer to https://www.hl7.org/fhir/SearchParameter.html 
+ **/ 
+ asset SearchParameter extends PatientData 
+ { 
+     o String detail optional
+ }
+
+
+/**
+ * For more details please refer to https://www.hl7.org/fhir/ProcedureRequest.html 
+ **/ 
+ asset ProcedureRequest extends PatientData 
+ { 
+     o String detail optional
+ }
+/**
+ * For more details please refer to https://www.hl7.org/fhir/DocumentReference.html 
+ **/ 
+ asset DocumentReference extends PatientData 
+ { 
+     o String detail optional
+ }
+
+/**
+ * For more details please refer to https://www.hl7.org/fhir/Media.html 
+ **/ 
+ asset Media extends PatientData 
+ { 
+     o String detail optional
+ }
+/**
+ * For more details please refer to https://www.hl7.org/fhir/MedicationDispense.html 
+ **/ 
+ asset MedicationDispense extends PatientData 
+ { 
+     o String detail optional
+ }
+/**
+ * For more details please refer to https://www.hl7.org/fhir/EpisodeOfCare.html 
+ **/ 
+ asset EpisodeOfCare extends PatientData 
+ { 
+     o String detail optional
+ }
+/**
+ * For more details please refer to https://www.hl7.org/fhir/Composition.html 
+ **/ 
+ asset Composition extends PatientData 
+ { 
+     o String detail optional
+ }
+/**
+ * For more details please refer to https://www.hl7.org/fhir/DeviceMetric.html 
+ **/ 
+ asset DeviceMetric extends PatientData 
+ { 
+     o String detail optional
+ }
+/**
+ * For more details please refer to https://www.hl7.org/fhir/Communication.html 
+ **/ 
+ asset Communication extends PatientData 
+ { 
+     o String detail optional
+ }
+/**
+ * For more details please refer to https://www.hl7.org/fhir/FamilyMemberHistory.html 
+ **/ 
+ asset FamilyMemberHistory extends PatientData 
+ { 
+     o String detail optional
+ }
+/**
+ * For more details please refer to https://www.hl7.org/fhir/AppointmentResponse.html 
+ **/ 
+ asset AppointmentResponse extends PatientData 
+ { 
+     o String detail optional
+ }
+/**
+ * For more details please refer to https://www.hl7.org/fhir/AdverseEvent.html 
+ **/ 
+ asset AdverseEvent extends PatientData 
+ { 
+     o String detail optional
+ }
+/**
+ * For more details please refer to https://www.hl7.org/fhir/Basic.html 
+ **/ 
+ asset Basic extends PatientData 
+ { 
+     o String detail optional
+ }
+/**
+ * For more details please refer to https://www.hl7.org/fhir/Coverage.html 
+ **/ 
+ asset Coverage extends PatientData 
+ { 
+     o String detail optional
+ }
+/**
+ * For more details please refer to https://www.hl7.org/fhir/Specimen.html 
+ **/ 
+ asset Specimen extends PatientData 
+ { 
+     o String detail optional
+ }
+/**
+ * For more details please refer to https://www.hl7.org/fhir/CommunicationRequest.html 
+ **/ 
+ asset CommunicationRequest extends PatientData 
+ { 
+     o String detail optional
+ }
+/**
+ * For more details please refer to https://www.hl7.org/fhir/Consent.html 
+ **/ 
+ asset Consent extends PatientData 
+ { 
+     o String detail optional
+ }
+/**
+ * For more details please refer to https://www.hl7.org/fhir/ReferralRequest.html 
+ **/ 
+ asset ReferralRequest extends PatientData 
+ { 
+     o String detail optional
+ }
+/**
+ * For more details please refer to https://www.hl7.org/fhir/Task.html 
+ **/ 
+ asset Task extends PatientData 
+ { 
+     o String detail optional
+ }
+/**
+ * For more details please refer to https://www.hl7.org/fhir/ActivityDefinition.html 
+ **/ 
+ asset ActivityDefinition extends PatientData 
+ { 
+     o String detail optional
+ }
+/**
+ * For more details please refer to https://www.hl7.org/fhir/ClinicalImpression.html 
+ **/ 
+ asset ClinicalImpression extends PatientData 
+ { 
+     o String detail optional
+ }
+/**
+ * For more details please refer to https://www.hl7.org/fhir/OperationDefinition.html 
+ **/ 
+ asset OperationDefinition extends PatientData 
+ { 
+     o String detail optional
+ }
+/**
+ * For more details please refer to https://www.hl7.org/fhir/Schedule.html 
+ **/ 
+ asset Schedule extends PatientData 
+ { 
+     o String detail optional
+ }
+/**
+ * For more details please refer to https://www.hl7.org/fhir/Subscription.html 
+ **/ 
+ asset Subscription extends PatientData 
+ { 
+     o String detail optional
+ }
+/**
+ * For more details please refer to https://www.hl7.org/fhir/DocumentManifest.html 
+ **/ 
+ asset DocumentManifest extends PatientData 
+ { 
+     o String detail optional
+ }
+/**
+ * For more details please refer to https://www.hl7.org/fhir/ImplementationGuide.html 
+ **/ 
+ asset ImplementationGuide extends PatientData 
+ { 
+     o String detail optional
+ }
+/**
+ * For more details please refer to https://www.hl7.org/fhir/RiskAssessment.html 
+ **/ 
+ asset RiskAssessment extends PatientData 
+ { 
+     o String detail optional
+ }
+/**
+ * For more details please refer to https://www.hl7.org/fhir/Substance.html 
+ **/ 
+ asset Substance extends PatientData 
+ { 
+     o String detail optional
+ }
+/**
+ * For more details please refer to https://www.hl7.org/fhir/ExplanationOfBenefit.html 
+ **/ 
+ asset ExplanationOfBenefit extends PatientData 
+ { 
+     o String detail optional
+ }
+/**
+ * For more details please refer to https://www.hl7.org/fhir/CapabilityStatement.html 
+ **/ 
+ asset CapabilityStatement extends PatientData 
+ { 
+     o String detail optional
+ }
+/**
+ * For more details please refer to https://www.hl7.org/fhir/Group.html 
+ **/ 
+ asset Group extends PatientData 
+ { 
+     o String detail optional
+ }
+/**
+ * For more details please refer to https://www.hl7.org/fhir/BodySite.html 
+ **/ 
+ asset BodySite extends PatientData 
+ { 
+     o String detail optional
+ }
+/**
+ * For more details please refer to https://www.hl7.org/fhir/ClaimResponse.html 
+ **/ 
+ asset ClaimResponse extends PatientData 
+ { 
+     o String detail optional
+ }
+/**
+ * For more details please refer to https://www.hl7.org/fhir/PlanDefinition.html 
+ **/ 
+ asset PlanDefinition extends PatientData 
+ { 
+     o String detail optional
+ }
+/**
+ * For more details please refer to https://www.hl7.org/fhir/Account.html 
+ **/ 
+ asset Account extends PatientData 
+ { 
+     o String detail optional
+ }
+/**
+ * For more details please refer to https://www.hl7.org/fhir/DataElement.html 
+ **/ 
+ asset DataElement extends PatientData 
+ { 
+     o String detail optional
+ }
+/**
+ * For more details please refer to https://www.hl7.org/fhir/VisionPrescription.html 
+ **/ 
+ asset VisionPrescription extends PatientData 
+ { 
+     o String detail optional
+ }
+/**
+ * For more details please refer to https://www.hl7.org/fhir/ChargeItem.html 
+ **/ 
+ asset ChargeItem extends PatientData 
+ { 
+     o String detail optional
+ }
+/**
+ * For more details please refer to https://www.hl7.org/fhir/DetectedIssue.html 
+ **/ 
+ asset DetectedIssue extends PatientData 
+ { 
+     o String detail optional
+ }
+/**
+ * For more details please refer to https://www.hl7.org/fhir/DeviceUseStatement.html 
+ **/ 
+ asset DeviceUseStatement extends PatientData 
+ { 
+     o String detail optional
+ }
+/**
+ * For more details please refer to https://www.hl7.org/fhir/Library.html 
+ **/ 
+ asset Library extends PatientData 
+ { 
+     o String detail optional
+ }
+/**
+ * For more details please refer to https://www.hl7.org/fhir/NutritionOrder.html 
+ **/ 
+ asset NutritionOrder extends PatientData 
+ { 
+     o String detail optional
+ }
+/**
+ * For more details please refer to https://www.hl7.org/fhir/ProcessRequest.html 
+ **/ 
+ asset ProcessRequest extends PatientData 
+ { 
+     o String detail optional
+ }
+/**
+ * For more details please refer to https://www.hl7.org/fhir/ProcessResponse.html 
+ **/ 
+ asset ProcessResponse extends PatientData 
+ { 
+     o String detail optional
+ }
+/**
+ * For more details please refer to https://www.hl7.org/fhir/RequestGroup.html 
+ **/ 
+ asset RequestGroup extends PatientData 
+ { 
+     o String detail optional
+ }
+/**
+ * For more details please refer to https://www.hl7.org/fhir/StructureMap.html 
+ **/ 
+ asset StructureMap extends PatientData 
+ { 
+     o String detail optional
+ }
+/**
+ * For more details please refer to https://www.hl7.org/fhir/CompartmentDefinition.html 
+ **/ 
+ asset CompartmentDefinition extends PatientData 
+ { 
+     o String detail optional
+ }
+/**
+ * For more details please refer to https://www.hl7.org/fhir/EligibilityRequest.html 
+ **/ 
+ asset EligibilityRequest extends PatientData 
+ { 
+     o String detail optional
+ }
+/**
+ * For more details please refer to https://www.hl7.org/fhir/ImmunizationRecommendation.html 
+ **/ 
+ asset ImmunizationRecommendation extends PatientData 
+ { 
+     o String detail optional
+ }
+/**
+ * For more details please refer to https://www.hl7.org/fhir/SupplyDelivery.html 
+ **/ 
+ asset SupplyDelivery extends PatientData 
+ { 
+     o String detail optional
+ }
+/**
+ * For more details please refer to https://www.hl7.org/fhir/DeviceRequest.html 
+ **/ 
+ asset DeviceRequest extends PatientData 
+ { 
+     o String detail optional
+ }
+/**
+ * For more details please refer to https://www.hl7.org/fhir/ImagingManifest.html 
+ **/ 
+ asset ImagingManifest extends PatientData 
+ { 
+     o String detail optional
+ }
+/**
+ * For more details please refer to https://www.hl7.org/fhir/SupplyRequest.html 
+ **/ 
+ asset SupplyRequest extends PatientData 
+ { 
+     o String detail optional
+ }
+/**
+ * For more details please refer to https://www.hl7.org/fhir/Contract.html 
+ **/ 
+ asset Contract extends PatientData 
+ { 
+     o String detail optional
+ }
+/**
+ * For more details please refer to https://www.hl7.org/fhir/ExpansionProfile.html 
+ **/ 
+ asset ExpansionProfile extends PatientData 
+ { 
+     o String detail optional
+ }
+/**
+ * For more details please refer to https://www.hl7.org/fhir/Measure.html 
+ **/ 
+ asset Measure extends PatientData 
+ { 
+     o String detail optional
+ }
+/**
+ * For more details please refer to https://www.hl7.org/fhir/EligibilityResponse.html 
+ **/ 
+ asset EligibilityResponse extends PatientData 
+ { 
+     o String detail optional
+ }
+/**
+ * For more details please refer to https://www.hl7.org/fhir/EnrollmentRequest.html 
+ **/ 
+ asset EnrollmentRequest extends PatientData 
+ { 
+     o String detail optional
+ }
+/**
+ * For more details please refer to https://www.hl7.org/fhir/EnrollmentResponse.html 
+ **/ 
+ asset EnrollmentResponse extends PatientData 
+ { 
+     o String detail optional
+ }
+/**
+ * For more details please refer to https://www.hl7.org/fhir/GraphDefinition.html 
+ **/ 
+ asset GraphDefinition extends PatientData 
+ { 
+     o String detail optional
+ }
+/**
+ * For more details please refer to https://www.hl7.org/fhir/GuidanceResponse.html 
+ **/ 
+ asset GuidanceResponse extends PatientData 
+ { 
+     o String detail optional
+ }
+/**
+ * For more details please refer to https://www.hl7.org/fhir/MeasureReport.html 
+ **/ 
+ asset MeasureReport extends PatientData 
+ { 
+     o String detail optional
+ }
+/**
+ * For more details please refer to https://www.hl7.org/fhir/MessageDefinition.html 
+ **/ 
+ asset MessageDefinition extends PatientData 
+ { 
+     o String detail optional
+ }
+/**
+ * For more details please refer to https://www.hl7.org/fhir/PaymentNotice.html 
+ **/ 
+ asset PaymentNotice extends PatientData 
+ { 
+     o String detail optional
+ }
+/**
+ * For more details please refer to https://www.hl7.org/fhir/PaymentReconciliation.html 
+ **/ 
+ asset PaymentReconciliation extends PatientData 
+ { 
+     o String detail optional
+ }
+/**
+ * For more details please refer to https://www.hl7.org/fhir/ServiceDefinition.html 
+ **/ 
+ asset ServiceDefinition extends PatientData 
+ { 
+     o String detail optional
+ }
+/**
+ * For more details please refer to https://www.hl7.org/fhir/OperationOutcome.html 
+ **/ 
+ asset OperationOutcome extends PatientData 
+ { 
+     o String detail optional
+ }
 
 /**
  * Sharing with Practitioners
