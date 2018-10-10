@@ -6,6 +6,8 @@ _A secure and transparent network for sharing health data_
 
 The Patient Data Network is a project that enables people to access and share their health data between people, healthcare professionals and healthcare practitioners. It is built with the _[Hyperledger Blockchain Composer](https://www.hyperledger.org)_ and uses _[HL7 FHIR](https://www.hl7.org/fhir/)_ resources.
 
+A detailed description of the project can be found on [Medium](https://medium.com/@micklynch_6905/the-patient-data-network-project-ef84a3d13781).
+
 The network consists of three categories;
 
 ### Participants
